@@ -18,7 +18,7 @@ The Software is provided "as is", without warranty of any kind, express or impli
 
 Jérémy Morin : **Etudiant en Licence 3 MIAGe** : _jer.morin@free.fr_
 
-[Louis Lainé](https://llaine.github.io) : **Etudiant en Licence 3 MIAGe** :
+[Louis Lainé](https://llaine.github.io) : **Etudiant en Licence 3 MIAGe** : _louis.laine7@gmail.com_
 
 ## A l'attention
 
