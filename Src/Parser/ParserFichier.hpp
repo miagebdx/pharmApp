@@ -18,9 +18,6 @@
 #ifndef PARSERFICHIER_HPP_
 #define PARSERFICHIER_HPP_
 
-#include "IParser.hpp"
-
-
 #include <fstream>
 #include <iostream>
 #include <string>
