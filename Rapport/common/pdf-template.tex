@@ -1,0 +1,171 @@
+\documentclass{book}
+
+
+% Fonts and typography
+
+%% Typography
+\usepackage[no-math]{fontspec}
+\defaultfontfeatures{Mapping = tex-text, Scale = MatchLowercase}
+
+%% Fonts
+\setmainfont{Ubuntu}
+\setsansfont{Ubuntu}
+\setmonofont[Mapping=tex-ansi]{Ubuntu Mono}
+
+%% Set Sans font in headings
+\usepackage{sectsty}
+\allsectionsfont{\sffamily}
+
+%% Set polyglossia language
+\usepackage{polyglossia}
+\setdefaultlanguage{english}
+
+
+% Page
+
+%% Use full page in book style
+\usepackage{fullpage}
+
+%% Set line spacing
+\usepackage{setspace}
+\setstretch{1.2}
+
+%% Disable paragraph indentation
+\usepackage{parskip}
+
+%% Start sections from new page
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
+
+
+% Colors
+
+\usepackage{xcolor}
+
+%% Tango color scheme
+\definecolor{SkyBlue}{HTML}{3465A4}
+\definecolor{DarkSkyBlue}{HTML}{204A87}
+
+\definecolor{Plum}{HTML}{75507B}
+
+\definecolor{ScarletRed}{HTML}{CC0000}
+
+\definecolor{Aluminium1}{HTML}{EEEEEC}
+\definecolor{Aluminium6}{HTML}{2e3436}
+
+\definecolor{Black}{HTML}{000000}
+
+
+% Listings
+
+\usepackage{listings}
+
+\lstset{language=C++,
+                basicstyle=\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{green}\ttfamily,
+                morecomment=[l][\color{magenta}]{\#}
+}
+
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+	backgroundcolor=\color{lbcolor},
+	tabsize=4,
+	rulecolor=,
+	language=matlab,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
+
+\lstset{
+  language = C++,
+  backgroundcolor = \color{Aluminium1},
+  extendedchars = true,
+  basicstyle = \normalsize\ttfamily,
+  showstringspaces = false,
+  showspaces = false,
+  tabsize = 1,
+  breaklines = true,
+  showtabs = false
+}
+
+
+% Links
+
+%% Hyperref
+\usepackage[colorlinks, breaklinks, bookmarks, xetex]{hyperref}
+
+\hypersetup {
+  linkcolor = DarkSkyBlue,
+  citecolor = DarkSkyBlue,
+  filecolor = DarkSkyBlue,
+  urlcolor = DarkSkyBlue
+}
+
+%% Don’t use Mono font for URLs
+\urlstyle{same}
+
+
+% Images
+
+\usepackage{graphicx}
+
+
+% Pandoc hacks
+
+%% Normal enumerates processing
+\usepackage{enumerate}
+
+%% Disable section numbers
+\setcounter{secnumdepth}{0}
+
+
+\newcommand*{\titleGM}{\begingroup % Create the command for including the title page in the document
+\hbox{ % Horizontal box
+\hspace*{0.2\textwidth} % Whitespace to the left of the title page
+\rule{1pt}{\textheight} % Vertical line
+\hspace*{0.05\textwidth} % Whitespace between the vertical line and title page text
+\parbox[b]{0.75\textwidth}{ % Paragraph box which restricts text to less than the width of the page
+
+{\noindent\Huge\bfseries PharmApp}\\[2\baselineskip] % Title
+{\large \textit{Université de Bordeaux}}\\[4\baselineskip] % Tagline or further description
+{\Large \textsc{Jérémy Morin \\ Louis Laine}} % Author name
+
+\vspace{0.5\textheight} % Whitespace between the title block and the publisher
+{\noindent }\\[\baselineskip] % Publisher and logo
+}}
+\endgroup}
+
+\begin{document}
+
+  % Title page
+
+  \thispagestyle{empty}
+
+\titleGM % This command includes the title page
+
+  \setcounter{page}{0}
+  
+  \tableofcontents
+
+  % Book contents
+
+  $body$
+
+\end{document}
