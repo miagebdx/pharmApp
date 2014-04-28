@@ -17,7 +17,7 @@ build=Build/
 src=Src/
 flag=`pkg-config gtkmm-3.0 --cflags --libs` -std=c++11
 
-all: mainGui mainTerm clean
+all: mainTerm clean
 
 mainGui: lesLibs abstractLibs
 	g++ $(src)mainGui.cpp -o $(build)mainGui $(flag)
