@@ -1,33 +1,11 @@
 #define pathFichierListe "liste.txt"
 
 #include "Abstract/Controller.cpp"
-/*
-	+--+ |  | +--+ +--+  +\  /+ +--+   +--+ +---+ +---+
-	|  | |__| |  | |  |  | \/ | |  |   |  | |   | |   |
-	+--+ |  | |--| +--\  |    | |--|   |--| +---+ +---+
-    |    |  | |  | |   \ |    | |  |   |  | |     |
+#define clear system("clear")
 
-    Brought to you by Louis & Jérémy
-	*/
-
-// Occurence statique
-// Pour avoir l'histogramme : Nb fois qu'on rentre l'occurence / la nombre de quantité
 int main(int argc, char const *argv[])
 {
-	// DataProvider db;
-	// string nomMedoc = "Voltaren";
-	// Medicament m = db.getTheMedicament(nomMedoc);
-
-	// dataMap tabTemp = db.getMedicamentEffetsMaxCommun(m, 2);
-	
-	// for(dataMapIterator it = tabTemp.begin(); it != tabTemp.end(); ++it)
-	// {
-	// 	cout << it->second.getNomMedicament() << endl;
-	// }
-	
-
-
-	
+	clear;
 	Controller cmd(true);
 	int userChoice, choixAlgo = 0;
 	string nomMedocRecherche, nomMed, nomEffet;
@@ -38,32 +16,38 @@ int main(int argc, char const *argv[])
 		switch(userChoice){
 			case 1 : {
 				cmd.dispMedoc<dataMap>(true);
+				cmd.displayMiniMenu();
 				break;
 			}
 			case 2 : {
 				cmd.dispMedocWithEffet<dataMap>(true);
+				cmd.displayMiniMenu();
 				break;
 			}
 			case 3 : {
-				cout << "Entrez le nom d'un effet, par exemple : anaphylacticReaction" << endl;
+				cout << RED "-> "<< RESET << " Entrez le nom d'un effet "<< CYAN << " (anaphylacticReaction)" << RESET << endl;
 				cin >> nomMedocRecherche;
 				cmd.dispEffetFromMedoc<dataMap>(nomMedocRecherche, true);
+				cmd.displayMiniMenu();
 				break;
 			}
 			case 4 : {
-				cout << "Entrez le nom d'un médicament, par ex : Voltaren" << endl;
+				cout << RED "-> "<< RESET << " Entrez le nom d'un médicament" << BLUE " (Voltaren)" << RESET << endl;
 				cin >> nomMedocRecherche;
+				nomMedocRecherche[0] = toupper(nomMedocRecherche[0]);
 				cmd.dispSearchMedicament<Medicament>(nomMedocRecherche, true);
+				cmd.displayMiniMenu();
 				break;
 			}
 			case 5 : {
 				cmd.dispHistogrammeEffet<dataEffet>(true);
+				cmd.displayMiniMenu();
 				break;
 			}
 			case 6 : {
-				cout << "Entrez le nom d'un médicament à ajouter" << endl;
+				cout << RED << "-> Entrez le nom d'un médicament à ajouter" << RESET << endl;
 				cin >> nomMed;
-				cout << "Entrez les effets correspondant " << endl;
+				cout << "-> Entrez les effets correspondant (0 pour quitter) " << endl;
 
 				while(true){
 					cin >> nomEffet;
@@ -71,24 +55,31 @@ int main(int argc, char const *argv[])
 						break;
 					}else{
 						lesEffets.push_back(nomEffet);
-						cout << nomEffet << " added" << endl;
+						cout << nomEffet << " : OK" << endl;
 					}
 				}	
 				cmd.dispAddMedicament(nomMed, lesEffets);
+				cmd.displayMiniMenu();
 				break;
 			}
 			case 7 : {
-				cout << "Entrez le nom d'un médicament pour rechercher les Medicaments ayant des effets en commun avec." << endl;
+				cout << GREEN << "Entrez le nom d'un médicament pour rechercher les Medicaments ayant des effets en commun avec." << RESET << BLUE << "(Voltaren)" << RESET << endl;
 				cin >> nomMedocRecherche;
-				cout << "Entrez le choix d'un algo : 1 / 2" << endl;
-				cout << "1 -> Parcoure tout et récupère ceux en commun" << endl;
-				cout << "2 -> Récupère les deux premiers " << endl;
+				nomMedocRecherche[0] = toupper(nomMedocRecherche[0]);
+				cout << "Entrez le choix d'un algo :"<< RED <<" 1 / 2" << RESET << endl;
+				cout << RED <<"1 -> "<< RESET << " Parcoure tout et récupère ceux en commun" << endl;
+				cout << RED <<"2 -> "<< RESET << " Récupère les deux premiers " << endl;
 				cin >> choixAlgo;
 				cmd.dispMedEnCommunWithEffet<dataMap>(nomMedocRecherche, choixAlgo);
+				cmd.displayMiniMenu();
 				break;
 			}
 			case 0 : {
 				return 0;
+			}
+			default : {
+				cout << "9 to display mini menu" << endl;
+				break;
 			}
 		}
 	}

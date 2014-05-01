@@ -69,6 +69,14 @@ Controller::Controller(bool asDisplay){
  	}
 }
 
+void Controller::displayMiniMenu(){
+	cout << YELLOW << "+----------------------MiniMenu----------------------------+" << RESET << endl;
+	cout << YELLOW "| "  RESET  RED "1" RESET " -> Meds" YELLOW " | " RESET RED "2 " RESET "-> Meds + effets" YELLOW " | " RESET RED "3 " RESET "-> Meds from effets" << endl;
+	cout << YELLOW "| "  RESET  RED "4" RESET " -> search" YELLOW " | " RESET RED "5 " RESET "-> Histo" YELLOW " | " RESET RED "6 " RESET "-> new" << endl;
+	cout << YELLOW "| "  RESET  RED "7" RESET " -> Med1[Effets] == MedsX[Effets]" YELLOW " | " RESET RED "0 " RESET "-> Exit" << endl;
+	cout << YELLOW << "+----------------------------------------------------------+" << RESET << endl;
+};
+
 /**
 * Default destruct
 * @return void
@@ -80,7 +88,7 @@ Controller::~Controller(){
 
 void Controller::displayMenu(){
 	cout << YELLOW << "+----------------------------------MENU----------------------------------+" << RESET << endl;
- 	cout << YELLOW << "| - " << RESET << RED << "1" << RESET "  => Afficher les médicaments."<< endl;
+ 	cout << YELLOW << "| - " << RESET << RED << "1" << RESET " => Afficher les médicaments."<< endl;
  	cout << YELLOW << "+------------------------------------------------------------------------+" << RESET << endl;
  	cout << YELLOW << "| - " << RESET << RED << "2" << RESET " => Afficher les médicaments  avec leurs effets."<< endl;
  	cout << YELLOW << "+------------------------------------------------------------------------+" << RESET << endl;
@@ -92,9 +100,12 @@ void Controller::displayMenu(){
  	cout << YELLOW << "+------------------------------------------------------------------------+" << RESET << endl;
  	cout << YELLOW << "| - " << RESET << RED << "6" << RESET " => Ajouter un médicament dans la base." << endl;
  	cout << YELLOW << "+------------------------------------------------------------------------+" << RESET << endl;
- 	cout << YELLOW << "| - " << RESET << RED << "7" << RESET " => Voir les médicaments ayant des effets en commun avec un autre médicament." << endl;
+ 	cout << YELLOW << "| - " << RESET << RED << "7" << RESET " => Voir les médicaments ayant " << endl;
+ 	cout << YELLOW << "|"<< RESET << "        des effets en commun avec un autre médicament. " << endl;
  	cout << YELLOW << "+------------------------------------------------------------------------+" << RESET << endl;
  	cout << YELLOW << "| - " << RESET << RED << "0" << RESET " => Quitter l'application." << endl;
+ 	cout << YELLOW << "+------------------------------------------------------------------------+" << RESET << endl;
+ 	cout << YELLOW << "| - " << RESET << RED << "9" << RESET " => Afficher le mini menu" << endl;
  	cout << YELLOW << "+------------------------------------------------------------------------+" << RESET << endl;
 }
 
@@ -212,19 +223,19 @@ T Controller::dispEffetFromMedoc(string theNomEffet, bool title, bool asReturn){
 	}
 
 	if (title) {
-		cout << theNomEffet << " are in the following medicament " << endl;
+		//cout << theNomEffet << " are in the following medicament " << endl;
 	}
 
 	if (asReturn){
 		return this->tabTemp;
 	}
 	//cout << this->tabTemp.size() << endl;
-	cout << "+------------------------+" << endl;
+	cout << YELLOW  << "+------------------------+" << RESET << endl;
 	for(dataMapIterator it = this->tabTemp.begin(); it != this->tabTemp.end(); ++it)
 	{
-		cout << "| " << it->first << " | ";
-		cout << it->second.getNomMedicament() << " |" << endl;
-		cout << "+------------------------+" << endl;
+		cout << YELLOW <<  "| " << RESET << RED << it->first << RESET << YELLOW << " | " << RESET;
+		cout << CYAN  << it->second.getNomMedicament() << RESET << endl;
+		cout << YELLOW  << "+------------------------+" << RESET << endl;
 
 	}
 	this->tabTemp.clear();
@@ -276,18 +287,19 @@ T Controller::dispSearchMedicament(string _nomMedoc, bool asTitle, bool asReturn
 	}
 
 	if(asTitle){
-		cout <<  "\033[4;32mRésultat de la recherche :  \033[0m" << endl;
+		cout <<  "Résultat de la recherche : " << endl;
 	}
 	
 	if (asReturn){
 		return tempMed;
 	}
 	
-	cout << tempMed.getNomMedicament() << endl;
+	cout << GREEN <<  tempMed.getNomMedicament() << RESET << endl;
 	for (int i = 0; i < tempMed.getLesEffetsIndesirables().size(); ++i)
 	{
-		cout << tempMed.getLesEffetsIndesirables()[i].getNomEffet() << " ";
+		cout << CYAN << tempMed.getLesEffetsIndesirables()[i].getNomEffet() << RESET << ",  ";
 	}
+	cout << endl;
 	return T();
 };
 
@@ -319,12 +331,12 @@ T Controller::dispMedEnCommunWithEffet(string _nomMedic, int choixAlgo, bool asT
 		cout << "Les médicaments ayant le plus d'effet en commun avec : " << tempMed.getNomMedicament() << endl;
 	}
 
-	cout << "+------------------------+" << endl;
+	cout << YELLOW  << "+------------------------+" << RESET << endl;
 	for(dataMapIterator it = this->tabTemp.begin(); it != this->tabTemp.end(); ++it)
 	{
-		cout << "| " << it->first << " | ";
-		cout << it->second.getNomMedicament() << " |" << endl;
-		cout << "+------------------------+" << endl;
+		cout << YELLOW <<  "| " << RESET << RED << it->first << RESET << YELLOW << " | " << RESET;
+		cout << CYAN  << it->second.getNomMedicament() << RESET << endl;
+		cout << YELLOW  << "+------------------------+" << RESET << endl;
 
 	}
 	this->tabTemp.clear();
@@ -347,5 +359,5 @@ void Controller::dispAddMedicament(string _nomMedoc, vector<string> _lesEffetsSt
 	}
 	newMed.setLesEffetsIndesirables(newEffets);
 	this->database.insertIntoMedicament(newMed);
-	cout << newMed.getNomMedicament() << "bien ajouté à la base." << endl;
+	cout << RED << newMed.getNomMedicament() << RESET << " added" << endl << endl;
 };

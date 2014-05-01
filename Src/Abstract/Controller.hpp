@@ -40,6 +40,7 @@ class Controller
 		~Controller();
 
 		void displayMenu();
+		void displayMiniMenu();
 
 		template <typename T> T dispMedoc(bool=false, bool=false);
 		template <typename T> T dispMedocWithEffet(bool=false, bool=false);
