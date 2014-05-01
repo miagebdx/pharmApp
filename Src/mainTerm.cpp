@@ -2,6 +2,7 @@
 
 #include "Abstract/Controller.cpp"
 #define clear system("clear")
+#include <string.h>
 
 int main(int argc, char const *argv[])
 {
