@@ -16,13 +16,9 @@ The Software is provided "as is", without warranty of any kind, express or impli
 
 ## A propos des auteurs
 
-Jérémy Morin : **Etudiant en Licence 3 MIAGe** : _jer.morin@free.fr_
+[Jérémy Morin]() : **Etudiant en Licence 3 MIAGe** : _jer.morin@free.fr_
 
 [Louis Lainé](https://llaine.github.io) : **Etudiant en Licence 3 MIAGe** : _louis.laine7@gmail.com_
-
-## A l'attention
-
-A l'attention de Madame Penois-Pinault
 
 #Cahier des charges
 A la lecture du cahier des charges, nous avons déterminés quelles étaient les spécifications et les attentes. 
@@ -105,9 +101,11 @@ En suivant cette logique, nous avons donc conçu l'architecture suivante concern
 
 ###ParserFichier
 
-	34.	typedef std::map<string, std::vector<string> > mapParse;
-	35.	typedef std::map<string, std::vector<string> >::iterator mapParseIterator;
-	36. typedef std::vector<string> leFichier;
+```cpp
+typedef std::map<string, std::vector<string> > mapParse;
+typedef std::map<string, std::vector<string> >::iterator mapParseIterator;
+typedef std::vector<string> leFichier;
+```
 
 
 C'est la classe qui va permettre la dialogue entre le fichier texte et les objets. 
@@ -122,8 +120,10 @@ Cette conception rappelle la base de données qui à la forme suivante :
 
 ###ObjectFactory
 
-	34. typedef std::map<int, Medicament> dataMap;
-	35. typedef std::map<string, std::vector<string> > parserMap;
+```cpp
+typedef std::map<int, Medicament> dataMap;
+typedef std::map<string, std::vector<string> > parserMap;
+```
 
 
 ObjectFactory, est la classe permettant la transition des données en objet. 
@@ -134,12 +134,13 @@ La fonction *transformToObject()*, qui se base sur l'utilisation du *ParserFichi
 
 ###DataProvider
 
-
-	20. typedef std::map<int, Medicament> dataMap;
-	...
-	24. typedef std::map<string, std::vector<string> > parserMap;
-	...
-	28. typedef std::map<string, double> dataEffet;
+```cpp
+typedef std::map<int, Medicament> dataMap;
+...
+typedef std::map<string, std::vector<string> > parserMap;
+...
+typedef std::map<string, double> dataEffet;
+```
 
 La couche DataProvider, héritant directement de la couche inférieure *ObjectFactory*, sera considéré comme l'objet **base de données** de l'appliaction. 
 
@@ -151,12 +152,14 @@ Ainsi toutes les fonctions de traitements concernant les données utiliseront le
 
 Lors de l'instanciation de l'objet (équivalent à la création de la base de données) la méthode mère *TransformToObject()* sera appelé pour pour récupérer dans le scope les données et hydrater l'attribut *DataProvider::dataStorage*. \\
 
+```cpp
+try{
+	this->dataStorage = this->transformToObjet();
+}catch(ObjectFactory::FactoryException e){
+	e.what();
+}
+```
 
-	try{
-		this->dataStorage = this->transformToObjet();
-	}catch(ObjectFactory::FactoryException e){
-		e.what();
-	}
 
 Toutes les "requêtes", utiliseront cet attribut comme source de données. 
 
@@ -167,23 +170,25 @@ Pour éviter de créer une fonction *main()* à ralonge et illisible, cette clas
 
 Cette classe se voulant polyvalente pour une utilisation graphique ou cli, renverra en fonction d'attribut passé en paramètre dans les méthodes de, renvoyer un affichage de données ou de renvoyer les données via un **dataMap**. 
 
-	//Exemple d'une fonction
-	template <typename T>
-	T Controller::dispEffetFromMedoc(...) {
-		//Fonction d'usage de la base de données
-		try{
-			this->tabTemp = this->database.getMapMedocFromEffet(theNomEffet);
-		}catch(DataProvider::DBException e){
-			e.getMessage();
-		}
-		...
-		//Le renvoie utile pour l'utilisation dans un main graphique par exemple.
-		if (asReturn){
-			return this->tabTemp;
-		}
-		...
-		return T();
+```cpp
+//Exemple d'une fonction
+template <typename T>
+T Controller::dispEffetFromMedoc(...) {
+	//Fonction d'usage de la base de données
+	try{
+		this->tabTemp = this->database.getMapMedocFromEffet(theNomEffet);
+	}catch(DataProvider::DBException e){
+		e.getMessage();
 	}
+	...
+	//Le renvoie utile pour l'utilisation dans un main graphique par exemple.
+	if (asReturn){
+		return this->tabTemp;
+	}
+	...
+	return T();
+}
+```
 
 
 Ainsi, qu'on développe un main graphique ou cli, la classe controller sera toujours celle qui sera utilisé pour la gestion des évenements, grâce à l'utilisation de *template* ( concept C++ ). 
