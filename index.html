@@ -1,86 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-
+    <title>PharmApp by miagebdx</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <title>miageBdx/pharmaApp</title>
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>Pharmacie</h1>
-        <h2>Miage Bordeaux present his data&#39;s management app for drugs.</h2>
-        <a href="https://github.com/miagebdx/pharmaApp" class="button"><small>View project on</small>GitHub</a>
-      </div>
-    </header>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/miagebdx/pharmaApp">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/miagebdx/pharmaApp/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/miagebdx/pharmaApp/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <pre><code>   ___ _                                     _
-  / _ \ |__   __ _ _ __ _ __ ___   __ _  ___(_) ___
- / /_)/ '_ \ / _` | '__| '_ ` _ \ / _` |/ __| |/ _ \
-/ ___/| | | | (_| | |  | | | | | | (_| | (__| |  __/
-\/    |_| |_|\__,_|_|  |_| |_| |_|\__,_|\___|_|\___| v 1.0
+    <div class="wrapper">
 
-</code></pre>
-<b>In order to watch source code see : </b><a href="https://github.com/miagebdx/pharmaApp/">PharmApp's Repository</a>
-<br>
+      <section>
+        <div id="title">
+          <h1>PharmApp</h1>
+          <p>data&#39;s management content application for drugs.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/miagebdx">miagebdx</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <p>In order to watch source code : <a href="https://github.com/miagebdx/pharmaApp/">PharmApp's Repository</a></p>
+
 <h1>
 <a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h1>
 
 <ol>
 <li><code>git clone https://github.com/miagebdx/pharmaApp.git</code></li>
 <li><code>make all</code></li>
-<li><code>cd Build</code></li>
-<li><code>./main</code></li>
+<li><code>cd Build &amp;&amp; ./mainTerm</code></li>
+</ol><h1>
+<a name="gui-version" class="anchor" href="#gui-version"><span class="octicon octicon-link"></span></a>Gui Version</h1>
+
+<p><strong>Warning</strong> : Need GTK &amp; GTKmm library v3.0</p>
+
+<ol>
+<li><code>git checkout dev-gui</code></li>
+<li><code>make mainGui</code></li>
+<li><code>cd Build &amp;&amp; ./mainGui</code></li>
 </ol><p>The binary file are located on the <strong>build</strong> folder.</p>
 
 <h1>
 <a name="report" class="anchor" href="#report"><span class="octicon octicon-link"></span></a>Report</h1>
 
-<p>Find <a href="https://raw.githubusercontent.com/miagebdx/pharmaApp/gh-pages/images/rapport.pdf">here</a></p>
-<p>Made with LaTeX & MarkDown.</p>
-        </section>
+<p>Find <a href="https://http://miagebdx.github.io/pharmaApp/images/rapport.pdf">here</a></p>
+      </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/miagebdx/pharmaApp/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/miagebdx/pharmaApp/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/miagebdx/pharmaApp"></a> is maintained by :
-          <br/>
-          <a href="https://github.com/llaine">Lainé Louis</a>
-          <br/>
-          <a href="https://github.com/Jermorin">Morin Jérémy</a>
-          </p>
-        </aside>
-      </div>
     </div>
-
-            <script type="text/javascript">
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
           <script type="text/javascript">
             try {
-              var pageTracker = _gat._getTracker("pharmacie, application, c++, gtkmm, gtk, c, bash, drugs, app, miage, bordeaux");
+              var pageTracker = _gat._getTracker("pharmacie, application, c++, gtkmm, gtk, c, bash, drugs, app, miage, bordeaux, POO, Bordeaux MIAGE");
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
