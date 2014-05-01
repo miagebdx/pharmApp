@@ -7,5 +7,4 @@ Need `GTK` and `GTKmm`
 
 1. `make mainGui`
 2. `cd Build && ./mainGui`
-3. 
 
