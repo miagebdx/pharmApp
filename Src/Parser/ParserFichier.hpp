@@ -33,7 +33,7 @@ typedef std::map<string, std::vector<string> > mapParse;
 typedef std::map<string, std::vector<string> >::iterator mapParseIterator;
 typedef std::vector<string> leFichier;
 
-class ParserFichier: public IParser
+class ParserFichier
 {
 
 private: 
