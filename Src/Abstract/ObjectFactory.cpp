@@ -107,15 +107,3 @@ dataMap ObjectFactory::transformToObjet(){
 
 	return theObjectMap;
 };
-
-
-/*
-void ObjectFactory::test(){
-	this->theParser->test();
-	this->theParser->getNombreLigneFichier();
-
-	int nbLignesFichiers = this->theParser->getNbLigne();
-
-	cout << nbLignesFichiers << endl;
-}
-*/

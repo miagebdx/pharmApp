@@ -69,6 +69,9 @@ Controller::Controller(bool asDisplay){
  	}
 }
 
+/**
+* display mini menu
+*/
 void Controller::displayMiniMenu(){
 	cout << YELLOW << "+----------------------MiniMenu----------------------------+" << RESET << endl;
 	cout << YELLOW "| "  RESET  RED "1" RESET " -> Meds" YELLOW " | " RESET RED "2 " RESET "-> Meds + effets" YELLOW " | " RESET RED "3 " RESET "-> Meds from effets" << endl;
@@ -86,6 +89,9 @@ Controller::~Controller(){
 	cout << "Bye ! " << endl;
 }
 
+/**
+* display menu
+*/
 void Controller::displayMenu(){
 	cout << YELLOW << "+----------------------------------MENU----------------------------------+" << RESET << endl;
  	cout << YELLOW << "| - " << RESET << RED << "1" << RESET " => Afficher les médicaments."<< endl;
@@ -105,13 +111,12 @@ void Controller::displayMenu(){
  	cout << YELLOW << "+------------------------------------------------------------------------+" << RESET << endl;
  	cout << YELLOW << "| - " << RESET << RED << "0" << RESET " => Quitter l'application." << endl;
  	cout << YELLOW << "+------------------------------------------------------------------------+" << RESET << endl;
- 	cout << YELLOW << "| - " << RESET << RED << "9" << RESET " => Afficher le mini menu" << endl;
- 	cout << YELLOW << "+------------------------------------------------------------------------+" << RESET << endl;
 }
 
 /**
 * Display all \Medicament from the database
-* @title : boolean, display the event of the function
+* @param asTitle=false  : display the "title" of the function
+* @param asReturn=false : return the typename T if true
 * @return void
 */
 template <typename T>
@@ -155,7 +160,8 @@ T Controller::dispMedoc(bool title, bool asReturn){
 /**
 * Display all \Medicament with \Effet from the database.
 * This function can return the same thing like dispMedoc. It's only for graphic usage.
-* @title : boolean, display the event of the function
+* @param asTitle=false  : display the "title" of the function
+* @param asReturn=false : return the typename T if true
 * @return void
 */
 template <typename T>
@@ -211,7 +217,8 @@ T Controller::dispMedocWithEffet(bool title, bool asReturn){
 /**
 * Display all \Effet.nom from the database
 * @string : the nom effet
-* @title : boolean, display the event of the function
+* @param asTitle=false  : display the "title" of the function
+* @param asReturn=false : return the typename T if true
 */
 template <typename T>
 T Controller::dispEffetFromMedoc(string theNomEffet, bool title, bool asReturn){
@@ -223,7 +230,7 @@ T Controller::dispEffetFromMedoc(string theNomEffet, bool title, bool asReturn){
 	}
 
 	if (title) {
-		//cout << theNomEffet << " are in the following medicament " << endl;
+		cout << theNomEffet << " are in the following medicament " << endl;
 	}
 
 	if (asReturn){
@@ -275,7 +282,12 @@ T Controller::dispHistogrammeEffet(bool asTitle, bool asReturn){
 
 };
 
-
+/**
+* Display a \Medicament from string
+* @param asTitle=false  : display the "title" of the function
+* @param asReturn=false : return the typename T if true
+* @return void
+*/
 template <typename T> 
 T Controller::dispSearchMedicament(string _nomMedoc, bool asTitle, bool asReturn){
 	Medicament tempMed;
@@ -303,6 +315,12 @@ T Controller::dispSearchMedicament(string _nomMedoc, bool asTitle, bool asReturn
 	return T();
 };
 
+/**
+* display Medicament which has the most common \Effet 
+* @param asTitle=false  : display the "title" of the function
+* @param asReturn=false : return the typename T if true
+* @return void
+*/
 template <typename T> 
 T Controller::dispMedEnCommunWithEffet(string _nomMedic, int choixAlgo, bool asTitle, bool asReturn){
 	//Récupération du médicament
@@ -347,6 +365,8 @@ T Controller::dispMedEnCommunWithEffet(string _nomMedic, int choixAlgo, bool asT
 * Add Medicament to the dataStorage instance
 * @param _nomMedoc : string
 * @param _lesEffetsString : vector<string>
+* @param asTitle=false  : display the "title" of the function
+* @param asReturn=false : return the typename T if true
 * @return void
 */
 void Controller::dispAddMedicament(string _nomMedoc, vector<string> _lesEffetsString){

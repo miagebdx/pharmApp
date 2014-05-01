@@ -86,7 +86,7 @@ int main(int argc, char const *argv[])
 					return 0;
 				}
 				default : {
-					cout << "9 to display mini menu" << endl;
+					
 					break;
 				}
 			}

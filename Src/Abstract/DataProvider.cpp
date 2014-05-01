@@ -188,7 +188,6 @@ dataEffet DataProvider::getLesEffets(){
 * @return : dataMap
 */
 dataMap DataProvider::getMedicamentEffetsMaxCommun(Medicament& _medicament, int choixAlgo){
-	//cout << _medicament.getNomMedicament() << _medicament.getLesEffetsIndesirables().size() << endl;
 	dataMap effetsCommun;
 	switch(choixAlgo){
 		case 1 : { 
@@ -197,13 +196,10 @@ dataMap DataProvider::getMedicamentEffetsMaxCommun(Medicament& _medicament, int 
 				int counter = 0;
 				for (dataMapIterator it = this->dataStorage.begin(); it != this->dataStorage.end(); ++it){
 					if (it->second.getNomMedicament() != _medicament.getNomMedicament()){		
-						//cout << "POUR LE MED : " << it->second.getNomMedicament() << endl;
 						for (int i = 0; i < it->second.getLesEffetsIndesirables().size(); ++i){
 							for (int j = 0; j < _medicament.getLesEffetsIndesirables().size(); ++j){
 								if(it->second.getLesEffetsIndesirables()[i].getNomEffet() == _medicament.getLesEffetsIndesirables()[j].getNomEffet()){	
 									effetsCommun.insert(std::make_pair(counter, it->second));
-									//cout << "Venant de la db -->" << it->second.getLesEffetsIndesirables()[i].getNomEffet() << endl;
-									//cout << "Venant du _med -->" << _medicament.getLesEffetsIndesirables()[j].getNomEffet() << endl;
 									++counter;	
 								}
 							} // for j 
@@ -218,14 +214,11 @@ dataMap DataProvider::getMedicamentEffetsMaxCommun(Medicament& _medicament, int 
 			for (dataMapIterator it = this->dataStorage.begin(); it != this->dataStorage.end(); ++it){
 				if(counter==2) break; 
 				if (it->second.getNomMedicament() != _medicament.getNomMedicament()){		
-					//cout << "POUR LE MED : " << it->second.getNomMedicament() << endl;
 					for (int i = 0; i < it->second.getLesEffetsIndesirables().size(); ++i){
 						for (int j = 0; j < _medicament.getLesEffetsIndesirables().size(); ++j){
 							if(counter==2) break; 
 							if(it->second.getLesEffetsIndesirables()[i].getNomEffet() == _medicament.getLesEffetsIndesirables()[j].getNomEffet()){	
 								effetsCommun.insert(std::make_pair(counter, it->second));
-								//cout << "Venant de la db -->" << it->second.getLesEffetsIndesirables()[i].getNomEffet() << endl;
-								//cout << "Venant du _med -->" << _medicament.getLesEffetsIndesirables()[j].getNomEffet() << endl;
 								++counter;	
 							}
 						} // for j
@@ -236,20 +229,6 @@ dataMap DataProvider::getMedicamentEffetsMaxCommun(Medicament& _medicament, int 
 		} // case 2
 	}
 	return effetsCommun;
-/*
-//Récupère les med qui ont le même nb d'effet en commun avec une tolerance de 2 maximum
-if (
-	(_medicament.getLesEffetsIndesirables().size() == it->second.getLesEffetsIndesirables().size() 
-		|| _medicament.getLesEffetsIndesirables().size() -1 == it->second.getLesEffetsIndesirables().size() 
-		|| _medicament.getLesEffetsIndesirables().size() -2 == it->second.getLesEffetsIndesirables().size() 
-	)
-	&& _medicament.getNomMedicament() != it->second.getNomMedicament()
-)
-{
-	tabTemp.insert(std::make_pair(count, it->second));		
-}
-++count
-*/
 };
 
 
