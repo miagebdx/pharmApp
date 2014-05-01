@@ -22,7 +22,7 @@ typedef std::map<int, Medicament>::iterator dataMapIterator;
 typedef std::map<string, double> dataEffet;
 typedef std::map<string, double>::iterator dataEffetIterator;
 
-//GTKmm 
+//GTKmm
 
 
 
@@ -47,7 +47,7 @@ class mywindow : public Gtk::Window
         typedef Gtk::TreeView TreeView;
         typedef Gtk::MenuBar MenuBar;
         typedef Gtk::Entry Entry;
-        
+
 
     public:
         mywindow(Controller control);
@@ -192,7 +192,7 @@ mywindow::mywindow(Controller control)
     gridSearch->set_border_width(10);
     gridSearch->set_row_spacing(5);
 
-    Label *labelMedicament = Gtk::manage(new Label("Nom medicament: "));
+    Label *labelMedicament = Gtk::manage(new Label("Nom effet: "));
     gridSearch->attach(*labelMedicament, 0, 0, 1, 1);
 
     Entry *inputMedicament = Gtk::manage(new Entry());
@@ -205,7 +205,7 @@ mywindow::mywindow(Controller control)
     search->signal_clicked().connect(sigc::bind<Entry*>(sigc::mem_fun(*this, &mywindow::on_search_click), inputMedicament));
     gridSearch->attach(*search, 2, 2, 1, 1);
 
-    
+
     /*Histogramme*/
      /* Treview with medoc name */
     TreeView *listHisto = Gtk::manage(new TreeView);
