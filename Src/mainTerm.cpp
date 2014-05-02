@@ -75,7 +75,7 @@ int main(int argc, char const *argv[])
 					cin >> nomMedocRecherche;
 					nomMedocRecherche[0] = toupper(nomMedocRecherche[0]);
 					cout << "Entrez le choix d'un algo :"<< RED <<" 1 / 2" << RESET << endl;
-					cout << RED <<"1 -> "<< RESET << " Parcour tout et récupère ceux en commun" << endl;
+					cout << RED <<"1 -> "<< RESET << " Parcourt tout et récupère ceux en commun" << endl;
 					cout << RED <<"2 -> "<< RESET << " Récupère les deux premiers " << endl;
 					cin >> choixAlgo;
 					cmd.dispMedEnCommunWithEffet<dataMap>(nomMedocRecherche, choixAlgo);
